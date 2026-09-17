@@ -71,6 +71,7 @@ const resources = {
         img_alt: '热气腾腾的火锅',
       },
       menu: {
+        recommend_section_title: '今日推荐',
         hero_badge: '今日好味已备齐',
         hero_title: '想吃什么，一起点。',
         hero_diners: '本桌已有 {{count}} 位朋友加入协同点餐',
@@ -309,6 +310,7 @@ const resources = {
         img_alt: 'Steaming hotpot',
       },
       menu: {
+        recommend_section_title: "Today's Picks",
         hero_badge: "Today's best flavors are ready",
         hero_title: 'What shall we order together?',
         hero_diners: '{{count}} friends joined collaborative ordering',

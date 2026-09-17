@@ -15,7 +15,7 @@ export const tableAreas: Record<string, string> = {
 
 export const products: Product[] = [
   {
-    id: 'p1', name: 'menu.p1.name', category: 'menu.cat.broth', price: 68,
+    id: 'p1', recommended: true, name: 'menu.p1.name', category: 'menu.cat.broth', price: 68,
     description: 'menu.p1.desc', image: hotpot, badge: 'menu.badge.popular',
     options: { flavor: ['menu.option.tomato_beef', 'menu.option.mushroom_beef'], spicy: ['menu.option.mild', 'menu.option.medium', 'menu.option.heavy', 'menu.option.super_spicy'] },
   },
@@ -25,7 +25,7 @@ export const products: Product[] = [
     options: { spicy: ['menu.option.mild', 'menu.option.medium', 'menu.option.heavy', 'menu.option.super_spicy'] },
   },
   {
-    id: 'p3', name: 'menu.p3.name', category: 'menu.cat.meat', price: 42,
+    id: 'p3', recommended: true, name: 'menu.p3.name', category: 'menu.cat.meat', price: 42,
     description: 'menu.p3.desc', image: beef, badge: 'menu.badge.chef', orderedCount: 1,
     options: { portion: ['menu.option.half', 'menu.option.full'], flavor: ['menu.option.original', 'menu.option.spicy_marinate'] },
   },
@@ -35,7 +35,7 @@ export const products: Product[] = [
     options: { portion: ['menu.option.half', 'menu.option.full'] },
   },
   {
-    id: 'p5', name: 'menu.p5.name', category: 'menu.cat.seafood', price: 39,
+    id: 'p5', recommended: true, name: 'menu.p5.name', category: 'menu.cat.seafood', price: 39,
     description: 'menu.p5.desc', image: hotpot, badge: 'menu.badge.new', orderedCount: 2,
     options: { portion: ['menu.option.half', 'menu.option.full'] },
   },
@@ -45,7 +45,7 @@ export const products: Product[] = [
     options: { portion: ['menu.option.half', 'menu.option.full'] },
   },
   {
-    id: 'p7', name: 'menu.p7.name', category: 'menu.cat.veggie', price: 28,
+    id: 'p7', recommended: true, name: 'menu.p7.name', category: 'menu.cat.veggie', price: 28,
     description: 'menu.p7.desc', image: vegetables, orderedCount: 1,
     options: { portion: ['menu.option.half', 'menu.option.full'] },
   },
@@ -55,7 +55,7 @@ export const products: Product[] = [
     options: { portion: ['menu.option.half', 'menu.option.full'] },
   },
   {
-    id: 'p9', name: 'menu.p9.name', category: 'menu.cat.staple', price: 16,
+    id: 'p9', recommended: true, name: 'menu.p9.name', category: 'menu.cat.staple', price: 16,
     description: 'menu.p9.desc', image: broth,
     options: { portion: ['menu.option.half', 'menu.option.full'] },
   },

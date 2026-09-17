@@ -54,8 +54,8 @@ test.describe('首页第一屏推荐菜展示 - E2E 验收测试', () => {
     // 点击第一张推荐菜（p1 鎏金番茄鸳鸯锅）
     await recommendCards.nth(0).click()
 
-    // 规格选择弹窗打开，标题为菜品名
-    await expect(page.getByRole('heading', { name: '鎏金番茄鸳鸯锅' })).toBeVisible()
+    // 规格选择弹窗打开，标题为菜品名（Dialog title 渲染为 h2）
+    await expect(page.getByRole('heading', { level: 2, name: '鎏金番茄鸳鸯锅' })).toBeVisible()
 
     // 弹窗包含规格选项（辣度等）和加购按钮
     await expect(page.getByText('选择辣度')).toBeVisible()
@@ -65,8 +65,9 @@ test.describe('首页第一屏推荐菜展示 - E2E 验收测试', () => {
     await page.getByRole('button', { name: '中辣' }).click()
     await page.getByRole('button', { name: /加入本桌购物车/ }).click()
 
-    // 弹窗关闭，购物车中出现该菜品
-    await expect(page.getByRole('heading', { name: '鎏金番茄鸳鸯锅' })).not.toBeVisible()
+    // 弹窗关闭：规格选项不再可见
+    await expect(page.getByText('选择辣度')).not.toBeVisible()
+    // 购物车中出现该菜品
     await expect(page.getByText('本桌购物车').first()).toBeVisible()
     await expect(page.getByText('鎏金番茄鸳鸯锅').first()).toBeVisible()
   })
@@ -77,8 +78,8 @@ test.describe('首页第一屏推荐菜展示 - E2E 验收测试', () => {
     const recommendTitle = page.getByRole('heading', { name: '今日推荐' })
     const recommendCards = recommendTitle.locator('+ div').locator('button')
 
-    // 切换到"肉类"分类
-    await page.getByRole('button', { name: '肉类' }).click()
+    // 切换到"牛羊肉"分类
+    await page.getByRole('button', { name: '牛羊肉' }).click()
     // 推荐区仍然可见且有 5 张卡片
     await expect(recommendTitle).toBeVisible()
     await expect(recommendCards).toHaveCount(5)

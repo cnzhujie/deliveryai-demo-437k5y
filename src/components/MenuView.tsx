@@ -49,6 +49,8 @@ export function MenuView({ diners, soldOut, onAdd }: MenuViewProps) {
     return matchCategory && matchSearch
   }), [category, search, t])
 
+  const recommendedProducts = useMemo(() => products.filter((product) => product.recommended), [])
+
   const openSpec = (product: Product) => {
     setSelected(product)
     setPortion(product.options?.portion?.[1] || product.options?.portion?.[0] || '')
@@ -75,6 +77,29 @@ export function MenuView({ diners, soldOut, onAdd }: MenuViewProps) {
         <div className="relative flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div><span className="flex items-center gap-2 text-xs font-bold text-amber-400"><Sparkles size={14} />{t('menu.hero_badge')}</span><h1 className="mt-2 text-3xl font-extrabold sm:text-4xl">{t('menu.hero_title')}</h1><p className="mt-2 text-sm text-rice-200">{t('menu.hero_diners', { count: diners.length })}</p></div>
           <div className="flex -space-x-2">{diners.map((name, index) => <span key={name} title={name} className={`flex h-9 w-9 items-center justify-center rounded-full border-2 border-charcoal-900 text-xs font-bold ${index === 0 ? 'bg-chili-500' : index === 1 ? 'bg-amber-400 text-charcoal-900' : 'bg-rice-200 text-charcoal-900'}`}>{name.slice(0, 1)}</span>)}</div>
+        </div>
+      </div>
+
+      <div className="mt-5">
+        <h2 className="mb-3 flex items-center gap-2 text-lg font-extrabold text-charcoal-900"><Sparkles size={18} className="text-chili-500" />{t('menu.recommend_section_title')}</h2>
+        <div className="scrollbar-none flex gap-3 overflow-x-auto pb-2">
+          {recommendedProducts.map((product) => {
+            const unavailable = soldOut.includes(product.id)
+            return (
+              <button key={product.id} type="button" disabled={unavailable} onClick={() => !unavailable && openSpec(product)} className="group relative w-40 shrink-0 animate-rise overflow-hidden rounded-3xl border border-charcoal-900/5 bg-white text-left shadow-card transition hover:-translate-y-1 disabled:cursor-not-allowed disabled:hover:translate-y-0 sm:w-48">
+                <div className="relative h-28 overflow-hidden sm:h-32">
+                  <img src={product.image} alt={t(product.name)} className={`h-full w-full object-cover transition duration-500 group-hover:scale-105 ${unavailable ? 'grayscale' : ''}`} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-charcoal-900/45 to-transparent" />
+                  {product.badge && <span className="absolute left-2 top-2 rounded-full bg-amber-400 px-2 py-0.5 text-[10px] font-extrabold text-charcoal-900">{t(product.badge)}</span>}
+                  {unavailable && <span className="absolute inset-0 flex items-center justify-center bg-white/55 text-sm font-extrabold text-charcoal-900 backdrop-blur-sm">{t('menu.sold_out')}</span>}
+                </div>
+                <div className="p-3">
+                  <h3 className="line-clamp-1 font-extrabold text-charcoal-900">{t(product.name)}</h3>
+                  <p className="mt-1 text-lg font-extrabold text-chili-500">{money(product.price)} <small className="text-xs font-medium text-charcoal-500">{t('menu.from')}</small></p>
+                </div>
+              </button>
+            )
+          })}
         </div>
       </div>
 

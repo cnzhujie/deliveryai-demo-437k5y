@@ -10,6 +10,7 @@ export interface Product {
   image: string
   badge?: string
   orderedCount?: number
+  recommended?: boolean
   options?: {
     portion?: string[]
     flavor?: string[]
